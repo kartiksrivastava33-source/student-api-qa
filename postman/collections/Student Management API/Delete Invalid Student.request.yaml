@@ -1,0 +1,5 @@
+$kind: http-request
+name: Delete Invalid Student
+url: http://127.0.0.1:8000/students/999
+method: DELETE
+order: 4499842210625735

@@ -1,0 +1,23 @@
+$kind: http-request
+name: Delete Student
+url: http://127.0.0.1:8000/students/2
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Delete confirmation is returned\", function () {\r
+
+      \    const data = pm.response.json();\r
+
+      \    pm.expect(data).to.have.property(\"message\");\r
+
+      });"
+    language: text/javascript
+order: 4499593089083956

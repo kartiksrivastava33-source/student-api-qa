@@ -1,0 +1,38 @@
+$kind: http-request
+name: Update Student
+url: http://127.0.0.1:8000/students/1
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Kartik Updated\",\r
+
+    \    \"age\": 22,\r
+
+    \    \"email\": \"kartik.updated@example.com\",\r
+
+    \    \"course\": \"ECE\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Student was updated\", function () {\r
+
+      \    const data = pm.response.json();\r
+
+      \    pm.expect(data).to.have.property(\"id\");\r
+
+      \    pm.expect(data.name).to.equal(\"Kartik Updated\");\r
+
+      });"
+    language: text/javascript
+order: 4304065891722147

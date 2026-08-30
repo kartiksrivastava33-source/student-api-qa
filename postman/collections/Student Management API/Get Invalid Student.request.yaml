@@ -1,0 +1,23 @@
+$kind: http-request
+name: Get Invalid Student
+url: http://127.0.0.1:8000/students/999
+method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 404\", function () {\r
+
+      \    pm.response.to.have.status(404);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Student not found error is returned\", function () {\r
+
+      \    const data = pm.response.json();\r
+
+      \    pm.expect(data).to.have.property(\"detail\");\r
+
+      });"
+    language: text/javascript
+order: 4030882456221575

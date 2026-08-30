@@ -1,0 +1,5 @@
+$kind: http-request
+name: Get Existing Student
+url: http://127.0.0.1:8000/students/1
+method: GET
+order: 2354488748959600
