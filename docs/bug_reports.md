@@ -1,64 +1,83 @@
 # Bug Reports
 
-## BUG-001 — API accepts invalid student age
+This document contains issues identified while testing the Student Management API.
 
-**Status:** Open
+## BUG-001 - Invalid Email Accepted
+
+**Title:** API accepts an invalid email format
 
 **Severity:** Medium
 
 **Priority:** Medium
 
-### Related Requirement
+**Module:** Create Student
 
-FR-03 / Validation Requirements
-
-Student age must be between 18 and 30.
+**Endpoint:**
+`POST /students`
 
 ### Steps to Reproduce
 
-1. Open the Student Management API.
-2. Send a POST request to `/students`.
-3. Provide age as `15`.
-4. Submit the request.
+1. Send a POST request to `/students`.
+2. Provide an invalid email such as `invalid-email`.
+3. Check the API response.
 
-### Test Data
+### Expected Result
 
-```json
-{
-  "name": "Test Student",
-  "age": 15,
-  "email": "test@example.com",
-  "course": "ECE"
-}
+The API should reject the invalid email and return a validation error.
 
-##Expected Result
+### Actual Result
 
-The API should reject the request with:
-
-422 Validation Error
-
-##Actual Result
-
-The API accepts the request and returns:
-
-201 Created
-
-##Impact
-
-Invalid student records can be created with an age below the allowed range.
-
-### Retest
-
-The API was updated to enforce the student age range of 18–30.
-
-The original test was executed again using age `15`.
-
-**Expected:** 422 Validation Error
-
-**Actual:** 422 Validation Error
-
-**Retest Result:** PASS
+The API returned a `422 Unprocessable Entity` response and rejected the request.
 
 ### Status
 
-Closed
+**Closed / Working as Expected**
+
+### Observation
+
+This test confirmed that the API correctly validates the email format.
+
+---
+
+## BUG-002 - Non-Existent Student Update
+
+**Title:** Update request for a non-existent student
+
+**Severity:** Medium
+
+**Priority:** Medium
+
+**Module:** Update Student
+
+**Endpoint:**
+`PUT /students/999`
+
+### Steps to Reproduce
+
+1. Send a PUT request for student ID `999`.
+2. Provide valid student data.
+3. Check the API response.
+
+### Expected Result
+
+The API should return `404 Not Found` because the student does not exist.
+
+### Actual Result
+
+The API returned `404 Not Found`.
+
+### Status
+
+**Closed / Working as Expected**
+
+### Observation
+
+This test confirmed that the API handles requests for non-existent resources correctly.
+
+---
+
+## Bug Testing Summary
+
+The negative test scenarios were used to check how the API handles invalid input and invalid resource IDs.
+
+The tested scenarios behaved as expected, so no unresolved defects were found during the current test run.
