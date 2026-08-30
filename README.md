@@ -157,6 +157,7 @@ student-api-qa/
 ├── pytest.ini
 ├── requirements.txt
 └── README.md
+```
 ## How to Run
 1. Clone the Repository
 git clone https://github.com/kartiksrivastava33-source/student-api-qa.git
@@ -217,6 +218,7 @@ The current automated test suite contains 10 test cases.
 All 10 tests passed successfully:
 
 ================ 10 passed in 0.28s ================
+
 ## Result Summary
 Result	Count
 Total Tests	10
